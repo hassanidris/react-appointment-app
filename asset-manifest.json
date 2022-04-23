@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/react-appointment-app/static/css/main.63bc14a3.css",
-    "main.js": "/react-appointment-app/static/js/main.5da2dffb.js",
+    "main.css": "/react-appointment-app/static/css/main.a75020e3.css",
+    "main.js": "/react-appointment-app/static/js/main.80d23135.js",
     "index.html": "/react-appointment-app/index.html",
-    "main.63bc14a3.css.map": "/react-appointment-app/static/css/main.63bc14a3.css.map",
-    "main.5da2dffb.js.map": "/react-appointment-app/static/js/main.5da2dffb.js.map"
+    "main.a75020e3.css.map": "/react-appointment-app/static/css/main.a75020e3.css.map",
+    "main.80d23135.js.map": "/react-appointment-app/static/js/main.80d23135.js.map"
   },
   "entrypoints": [
-    "static/css/main.63bc14a3.css",
-    "static/js/main.5da2dffb.js"
+    "static/css/main.a75020e3.css",
+    "static/js/main.80d23135.js"
   ]
 }
