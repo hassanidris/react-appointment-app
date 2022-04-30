@@ -2,7 +2,29 @@ import { BiCalendarPlus } from "react-icons/bi";
 import { useState } from "react";
 
 const AddAppointment = () => {
+    const clearData = {
+        ownerName: '',
+        petName: '',
+        aptDate: '',
+        aptTime: '',
+        aptNotes: ''
+    }
     let [toggleForm, setToggleForm] = useState(false);
+    let [formData, setFormData] = useState(clearData);
+
+    function formDataPublish({ lastId, onSendAppointment }) {
+        const appointemtInfo = {
+            id: lastId + 1,
+            ownerName: formData.ownerName,
+            petName: formData.petName,
+            aptDate: formData.aptDate + ' ' + formData.aptTime,
+            aptNotes: formData.aptNotes
+        }
+        onSendAppointment(appointemtInfo);
+        setFormData(clearData);
+        setToggleForm(!toggleForm);
+    }
+
     return (
         <div>
             <button onClick={() => {setToggleForm(!toggleForm) }}
@@ -19,6 +41,8 @@ const AddAppointment = () => {
                         </label>
                         <div className="mt-1 sm:mt-0 sm:col-span-2">
                             <input type="text" name="ownerName" id="ownerName"
+                            onChange={(event) => {setFormData({...formData, ownerName: event.target.value})}}
+                            value={formData.ownerName}
                             className="form-control relative flex-auto min-w-0 block px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" />
                         </div>
                     </div>
@@ -29,6 +53,8 @@ const AddAppointment = () => {
                         </label>
                         <div className="mt-1 sm:mt-0 sm:col-span-2">
                             <input type="text" name="petName" id="petName"
+                            onChange={(event) => {setFormData({...formData, petName: event.target.value})}}
+                            value={formData.petName}
                             className="form-control relative flex-auto min-w-0 block px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" />
                         </div>
                     </div>
@@ -39,6 +65,8 @@ const AddAppointment = () => {
                         </label>
                         <div className="mt-1 sm:mt-0 sm:col-span-2">
                             <input type="date" name="aptDate" id="aptDate"
+                            onChange={(event) => {setFormData({...formData, aptDate: event.target.value})}}
+                            value={formData.aptDate}
                             className="form-control relative flex-auto min-w-0 block px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" />
                         </div>
                     </div>
@@ -49,6 +77,8 @@ const AddAppointment = () => {
                         </label>
                         <div className="mt-1 sm:mt-0 sm:col-span-2">
                             <input type="time" name="aptTime" id="aptTime"
+                            onChange={(event) => {setFormData({...formData, aptTime: event.target.value})}}
+                            value={formData.aptTime}
                             className="form-control relative flex-auto min-w-0 block px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" />
                         </div>
                     </div>
@@ -59,6 +89,8 @@ const AddAppointment = () => {
                         </label>
                         <div className="mt-1 sm:mt-0 sm:col-span-2">
                             <textarea id="aptNotes" name="aptNotes" rows="3"
+                            onChange={(event) => {setFormData({...formData, aptNotes: event.target.value})}}
+                            value={formData.aptNotes}
                             className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="Detailed comments about the condition"></textarea>
                         </div>
                     </div>
@@ -66,7 +98,7 @@ const AddAppointment = () => {
 
                     <div className="pt-5">
                         <div className="flex justify-end">
-                            <button type="submit" className="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-400 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400">
+                            <button type="submit" onClick={formDataPublish} className="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-400 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400">
                             Submit
                             </button>
                         </div>
